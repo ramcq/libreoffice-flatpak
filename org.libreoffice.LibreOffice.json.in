@@ -13,7 +13,7 @@
                 {
                     "type": "archive",
                     "url": "https://download.documentfoundation.org/libreoffice/src/5.4.0/libreoffice-5.4.0.3.tar.xz",
-                    "sha256sum": "17b29d05349b0db15f606f2d630e84c0969c89af6bd06aad8d75a074ee2add94"
+                    "sha256": "17b29d05349b0db15f606f2d630e84c0969c89af6bd06aad8d75a074ee2add94"
                 }
             ],
             "buildsystem": "simple",

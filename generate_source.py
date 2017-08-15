@@ -62,7 +62,7 @@ for project in external_projects:
     sources += [{
             'type': 'file',
             'url': url,
-            'sha256sum': download_vars[shasum_key],
+            'sha256': download_vars[shasum_key],
             'dest-filename': dest_filename
         }]
 
