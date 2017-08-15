@@ -1,0 +1,39 @@
+{
+    "id": "org.libreoffice.LibreOffice",
+    "branch": "stable",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.24",
+    "sdk": "org.gnome.Sdk",
+    "command": "/app/libreoffice/program/soffice",
+    "separate-locales": false,
+    "modules": [
+        {
+            "name": "libreoffice",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.documentfoundation.org/libreoffice/src/5.4.0/libreoffice-5.4.0.3.tar.xz",
+                    "sha256sum": "17b29d05349b0db15f606f2d630e84c0969c89af6bd06aad8d75a074ee2add94"
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+                "./autogen.sh --prefix=/run/build/libreoffice/inst --with-distro=LibreOfficeFlatpak --without-system-xmlsec",
+                "make",
+                "make distro-pack-install-strip",
+                "make cmd cmd='$(SRCDIR)/solenv/bin/assemble-flatpak.sh'"
+            ]
+        }
+    ],
+    "finish-args": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--socket=system-bus",
+        "--socket=session-bus",
+        "--filesystem=host",
+        "--env=LIBO_FLATPAK=1"
+    ]
+}
