@@ -27,7 +27,7 @@
                 "./autogen.sh --prefix=/run/build/libreoffice/inst --with-distro=LibreOfficeFlatpak --without-system-xmlsec",
                 "make",
                 "make distro-pack-install-strip",
-                "make cmd cmd='\$(SRCDIR)/solenv/bin/assemble-flatpak.sh'"
+                "make cmd cmd='$(SRCDIR)/solenv/bin/assemble-flatpak.sh'"
             ]
         }
     ],
