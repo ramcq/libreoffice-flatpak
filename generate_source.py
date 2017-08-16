@@ -9,7 +9,8 @@ dest_path = 'external/tarballs'
 json_out = 'org.libreoffice.LibreOffice.json'
 json_in = json_out + '.in'
 
-external_projects = []
+external_projects = ['collada2gltf', 'pdfium', 'opencollada', 'ucpp', 'xmlsec']
+external_projects += ['font_caladea', 'font_carlito', 'font_dejavu', 'font_gentium', 'font_liberation_narrow', 'font_liberation', 'font_linlibertineg', 'font_opensans', 'font_ptserif', 'font_sourcecode', 'font_sourcesans', 'font_emojione_color']
 with open(distro_conf, 'r') as dc:
     for line in dc:
         line = line.rstrip()
@@ -18,6 +19,13 @@ with open(distro_conf, 'r') as dc:
             # skip external headers
             if project in ['bluez', 'odbc', 'sane']:
                 continue
+            if project == 'gpgmepp':
+                external_projects += ['gpgme', 'assuan', 'gpgerror']
+                continue
+            if project == 'liblangtag':
+                external_projects += ['langtagreg']
+            if project == 'redland':
+                external_projects += ['raptor', 'rasqal']
             external_projects += [project]
 
 download_vars = {}
@@ -44,8 +52,6 @@ for project in external_projects:
         try_keys += [project[3:]]
     else:
         try_keys += ['lib' + project]
-    if project.endswith('pp'):
-        try_keys += [project[:-2]]
 
     for key in try_keys:
         tarball_key = key.upper() + '_TARBALL'
