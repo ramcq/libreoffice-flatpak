@@ -410,7 +410,6 @@
         "--env=LIBO_FLATPAK=1"
     ], 
     "command": "/app/libreoffice/program/soffice", 
-    "branch": "stable", 
     "runtime-version": "3.24", 
     "runtime": "org.gnome.Platform", 
     "sdk": "org.gnome.Sdk"
