@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import json, os, re
+import json, os, re, sys
 
 distro_conf = 'LibreOfficeFlatpak.conf'
 download_lst = 'download.lst'
@@ -8,7 +8,12 @@ json_in = 'flatpak-manifest.in'
 json_out = 'org.libreoffice.LibreOffice.json'
 base_url = 'https://dev-www.libreoffice.org/src'
 dest_path = 'external/tarballs'
-branch = 'libreoffice-5.4.1.2'
+
+branch = sys.argv[1]
+if len(sys.argv) > 2:
+    commit = sys.argv[2]
+else:
+    commit = None
 
 external_projects = ['collada2gltf', 'pdfium', 'opencollada', 'ucpp', 'xmlsec']
 external_projects += ['font_caladea', 'font_carlito', 'font_dejavu',
@@ -84,6 +89,8 @@ with open(json_in, 'r') as ji:
 # then replace all of the generated modules with the newly-generated ones
 j['modules'][0]['sources'] = j['modules'][0]['sources'][0:2]
 j['modules'][0]['sources'][0]['branch'] = branch
+if commit:
+    j['modules'][0]['sources'][0]['branch'] = commit
 j['modules'][0]['sources'] += sources
 
 with open(json_out, 'w') as jo:
