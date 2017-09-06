@@ -4,13 +4,18 @@ import json, os, re
 
 distro_conf = 'LibreOfficeFlatpak.conf'
 download_lst = 'download.lst'
+json_in = 'flatpak-manifest.in'
+json_out = 'org.libreoffice.LibreOffice.json'
 base_url = 'https://dev-www.libreoffice.org/src'
 dest_path = 'external/tarballs'
-json_out = 'org.libreoffice.LibreOffice.json'
-json_in = json_out + '.in'
+branch = 'libreoffice-5.4.1.2'
 
 external_projects = ['collada2gltf', 'pdfium', 'opencollada', 'ucpp', 'xmlsec']
-external_projects += ['font_caladea', 'font_carlito', 'font_dejavu', 'font_gentium', 'font_liberation_narrow', 'font_liberation', 'font_linlibertineg', 'font_opensans', 'font_ptserif', 'font_sourcecode', 'font_sourcesans', 'font_emojione_color']
+external_projects += ['font_caladea', 'font_carlito', 'font_dejavu',
+                      'font_gentium', 'font_liberation_narrow',
+                      'font_liberation', 'font_linlibertineg', 'font_opensans',
+                      'font_ptserif', 'font_sourcecode', 'font_sourcesans',
+                      'font_emojione_color']
 with open(distro_conf, 'r') as dc:
     for line in dc:
         line = line.rstrip()
@@ -75,6 +80,10 @@ for project in external_projects:
 with open(json_in, 'r') as ji:
     j = json.load(ji)
 
+# keep the two static defined modules, update the branch we want to fetch,
+# then replace all of the generated modules with the newly-generated ones
+j['modules'][0]['sources'] = j['modules'][0]['sources'][0:2]
+j['modules'][0]['sources'][0]['branch'] = branch
 j['modules'][0]['sources'] += sources
 
 with open(json_out, 'w') as jo:
