@@ -5,13 +5,6 @@
     "sdk": "org.gnome.Sdk",
     "command": "/app/libreoffice/program/soffice",
     "separate-locales": false,
-    "build-options" : {
-        "arch": {
-            "arm": {
-                "cflags": "-mfpu=neon"
-            }
-        }
-    },
     "modules": [
         {
             "name": "libreoffice",

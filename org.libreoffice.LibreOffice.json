@@ -1,13 +1,6 @@
 {
     "app-id": "org.libreoffice.LibreOffice", 
     "separate-locales": false, 
-    "build-options": {
-        "arch": {
-            "arm": {
-                "cflags": "-mfpu=neon"
-            }
-        }
-    }, 
     "modules": [
         {
             "buildsystem": "simple", 
