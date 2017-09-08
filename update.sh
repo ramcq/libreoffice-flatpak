@@ -2,9 +2,8 @@
 
 set -ex
 
-#branch=libreoffice-5-4
-branch=master
-commit=b9ddf19ca151d2c7f7315fc26138e5b2b4d4ab8d
+branch=libreoffice-5-4
+commit=dc2bcaa3967095044f025855ec95436d501554f2
 
 if [ -n "${commit}" ]; then
   refspec="${commit}"
